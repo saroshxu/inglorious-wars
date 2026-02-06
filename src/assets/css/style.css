@@ -1,0 +1,46 @@
+.top-level-frame {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+}
+.install-screen {
+	background-image: url("../imgs/paper-bg-highRes.png");
+	background-size: 100% auto;
+	flex-direction: column;
+}
+.install-screen-txt-cont {
+	height: 50vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 6px;
+	padding-bottom: 12%;
+}
+.install-screen-txt-cont .game-logo-txt {
+	font-size: 1.4rem;
+	color: var(--black-foreground);
+	font-weight: 600;
+	font-family: "Special Elite", cursive;
+	text-align: center;
+}
+.install-screen-app-logo {
+	width: 15vw;
+	max-width: 64px;
+}
+.install-screen-art-cont {
+	width: 100%;
+	height: 50vh;
+	background-image: url("../imgs/arts/creative-art-1-black-w760.png");
+	background-size: 100% auto;
+	background-position: top;
+}
+.install-status {
+	font-size: 1rem;
+	font-weight: 600;
+	font-family: "Special Elite", cursive;
+	color: var(--black-foreground);
+	max-width: 80%;
+	text-align: center;
+}

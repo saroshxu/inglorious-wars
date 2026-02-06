@@ -1,0 +1,23 @@
+{
+	"name": "Inglorious Wars",
+	"short_name": "Inglorious Wars",
+	"description": "Private online game, made by @saroshxu..",
+	"start_url": "/disclegends/app.html",
+	"scope": "/disclegends/",
+	"display": "standalone",
+	"orientation": "portrait",
+	"background_color": "#f1ebde",
+	"theme_color": "#f1ebde",
+	"icons": [
+		{
+			"src": "/disclegends/src/assets/imgs/app/app192-1.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/disclegends/src/assets/imgs/app/app512-1.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}

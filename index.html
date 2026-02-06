@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Inglorious Wars</title>
+		<link
+			rel="manifest"
+			crossorigin="use-credentials"
+			href="manifest.json"
+		/>
+
+		<meta name="theme-color" content="#f1ebde" />
+
+		<link
+			rel="apple-touch-icon"
+			href="src/assets/imgs/app/app-white-w64-hFavicon.png"
+		/>
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta
+			name="apple-mobile-web-app-status-bar-style"
+			content="black-translucent"
+		/>
+		<meta name="apple-mobile-web-app-title" content="Inglorious Wars" />
+
+		<link rel="shortcut icon" href="" type="image/png" id="favicon" />
+
+		<link rel="stylesheet" href="src/assets/css/base/vars.css" />
+		<link rel="stylesheet" href="src/assets/css/base/fonts.css" />
+		<link rel="stylesheet" href="src/assets/css/base/global.css" />
+		<link rel="stylesheet" href="src/assets/css/comp/btns.css" />
+		<link rel="stylesheet" href="src/assets/css/style.css" />
+	</head>
+	<body onload="doLoadStuff()">
+		<!-- <div class="loading-screen top-level-frame"></div> -->
+		<div class="install-screen top-level-frame">
+			<div class="install-screen-txt-cont">
+				<img
+					src="src/assets/imgs/app/app-black-w64.png"
+					alt=""
+					class="install-screen-app-logo"
+				/>
+				<span class="game-logo-txt"
+					>INGLORIOUS<br />
+					WARS.</span
+				>
+				<button
+					class="rough-btn"
+					id="installBtn"
+					style="margin-top: 28px"
+				>
+					<span class="rough-btn-label">Install</span>
+					<svg class="rough-btn-svg"></svg>
+				</button>
+				<span
+					class="install-status"
+					id="installStatus"
+					style="margin-top: 28px; display: none"
+					>Downloading.. 1/2 Assets</span
+				>
+				<button
+					class="rough-btn"
+					id="retryBtn"
+					onclick="document.querySelector('#installBtn').click()"
+					style="display: none; margin-top: 8px"
+				>
+					<span class="rough-btn-label">Retry</span>
+					<svg class="rough-btn-svg"></svg>
+				</button>
+			</div>
+			<div class="install-screen-art-cont"></div>
+		</div>
+		<!-- <div class="game-screen top-level-frame"></div> -->
+
+		<script type="text/javascript" src="src/js/utlis.js"></script>
+		<script type="text/javascript" src="src/js/script.js"></script>
+
+		<script type="module" src="src/js/inits/rough.js"></script>
+
+		<script type="module" src="src/js/inits/installer.sw-init.js"></script>
+	</body>
+</html>
