@@ -8,7 +8,7 @@ function log(s) {
 
 if ("serviceWorker" in navigator) {
 	navigator.serviceWorker
-		.register("/disclegends/service-worker.js")
+		.register("/inglorious-wars/service-worker.js")
 		.catch((e) => console.error("sw reg failed", e));
 }
 
@@ -57,3 +57,4 @@ document.getElementById("installBtn").addEventListener("click", async () => {
 	// Kick off caching (no progress messages - final only)
 	sw.postMessage({ type: "CACHE_ASSETS", payload: { assets: ASSETS } });
 });
+
