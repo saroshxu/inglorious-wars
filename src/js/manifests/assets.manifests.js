@@ -1,4 +1,4 @@
-export const PROJECT_DIR = "disclegends";
+export const PROJECT_DIR = "inglorious-wars";
 export const ASSETS = [
 	"/src/assets/imgs/paper-bg-highRes.png",
 	"/src/assets/imgs/arts/creative-art-1-black-w760.png",
@@ -11,3 +11,4 @@ export function getAssetURLs() {
 	const base = getProjectBase();
 	return ASSETS.map((p) => base + "/" + p.replace(/^\/+/g, ""));
 }
+
