@@ -3,7 +3,7 @@ const ASSETS = getAssetURLs();
 
 // ensure SW is registered somewhere earlier
 if ("serviceWorker" in navigator) {
-	navigator.serviceWorker.register("/sw.js").catch(() => {});
+	navigator.serviceWorker.register("/service-wroker.js").catch(() => {});
 }
 
 /* ---------- helpers ---------- */

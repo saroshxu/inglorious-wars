@@ -94,7 +94,10 @@ async function isInCache(cache, url) {
 
 /* ---------- Primary behaviors ---------- */
 
-// Batch-cache assets. Returns summary { total, successCount, failed: [ {url, error} ] }
+/**
+ * Batch-cache assets. Returns summary { total, successCount, failed: [ {url, error} ] }
+ * Now posts lightweight progress messages during the loop: { type: 'CACHE_PROGRESS', processed, total, successCount, failedCount, url, success, error? }
+ */
 async function cacheAssets(assets, clientId) {
 	const normalized = Array.from(
 		new Set((assets || []).map(normalizeUrl)),
@@ -103,20 +106,57 @@ async function cacheAssets(assets, clientId) {
 
 	const failed = [];
 	let successCount = 0;
+	let processed = 0;
+	const total = normalized.length;
+
+	// If there are no assets, immediately reply with CACHE_DONE
+	if (total === 0) {
+		const emptyResult = {
+			type: "CACHE_DONE",
+			total: 0,
+			successCount: 0,
+			failed: [],
+		};
+		await postToClient(clientId, emptyResult);
+		return emptyResult;
+	}
 
 	for (const url of normalized) {
 		try {
-			// If already cached, still fetch fresh to ensure latest (change if you want cache-first)
+			// fetch & cache fresh copy
 			await fetchAndCache(cache, meta, url);
 			successCount++;
+			processed++;
+			// send progress update for success
+			await postToClient(clientId, {
+				type: "CACHE_PROGRESS",
+				processed,
+				total,
+				successCount,
+				failedCount: failed.length,
+				url,
+				success: true,
+			});
 		} catch (err) {
+			processed++;
 			failed.push({ url, error: err.message || String(err) });
+			// send progress update for failure
+			await postToClient(clientId, {
+				type: "CACHE_PROGRESS",
+				processed,
+				total,
+				successCount,
+				failedCount: failed.length,
+				url,
+				success: false,
+				error: err && err.message ? err.message : String(err),
+			});
 		}
 	}
 
 	const result = {
 		type: "CACHE_DONE",
-		total: normalized.length,
+		total,
 		successCount,
 		failed,
 	};
@@ -273,16 +313,13 @@ self.addEventListener("fetch", (event) => {
 		return;
 	}
 
-	// IMPORTANT:
 	// Only respond if asset is ALREADY cached
 	event.respondWith(
 		caches.match(event.request).then((cached) => {
 			if (cached) return cached;
 
-			// VERY IMPORTANT:
 			// Do NOT fetch here — let browser handle it
 			return fetch(event.request);
-			// or simply: return Response.error();
 		}),
 	);
 });

@@ -11,4 +11,3 @@ export function getAssetURLs() {
 	const base = getProjectBase();
 	return ASSETS.map((p) => base + "/" + p.replace(/^\/+/g, ""));
 }
-
